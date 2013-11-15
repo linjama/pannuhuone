@@ -1,4 +1,11 @@
+# Function(s) for basic vector operations. I know that better solutions
+# already exist, but I want to learn RSpec and Ruby.
+
+
+require 'mathn'
+
 def vector_multiply(in1, in2)
+  
   #Conversion scalars to array
   vec1 = [in1].flatten
   vec2 = [in2].flatten
@@ -18,6 +25,6 @@ def vector_multiply(in1, in2)
   elsif length_of_vec2 == 1
     vec1.collect { |item| vec2[0]*item }
   else
-    (0..length_of_vec1-1).collect { |i| vec1[i]*vec2[i] }    
+    (0...length_of_vec1).collect { |i| vec1[i]*vec2[i] }    
   end
 end
