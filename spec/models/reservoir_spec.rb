@@ -19,4 +19,8 @@ describe "Reservoir" do
     sum.should be_within(0.0001).of reservoir.total_heat_capacity
   end
 
+  it "can read temperature sensors" do
+    temperatures = reservoir.temperature_sensors.read
+  end
+
 end
