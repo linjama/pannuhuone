@@ -20,7 +20,7 @@ describe "Reservoir" do
   end
 
   it "can read temperature sensors" do
-    temperatures = reservoir.temperature_sensors.read
+    temperatures = reservoir.temperature_sensors
   end
 
 end
