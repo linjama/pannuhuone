@@ -13,16 +13,16 @@ class Reservoir < ActiveRecord::Base
   METAL_HEAT_CAPACITY = 0.45/3600.0   # [kWh/kg/Celcius]
   TEMPERATURE_OF_INLET_WATER = 6.0
   TEMPERATURE_OF_HEATING_RETURN = 30.0  # Not planned to be measured
-  TEMPERATURE_MEASUREMENT_POCKETS = vector_multiply([20, 20, 20, 20, 20],1/100) 
+  TEMPERATURE_MEASUREMENT_POCKETS = Vector[20, 20, 20, 20, 20]/100 
   
   def initialize(volume = 2500, mass = 350)
     @volume = volume
     @total_heat_capacity = calculate_total_heat_capacity(volume, mass)
-    
-    @partial_heat_capacity = vector_multiply(
-      @total_heat_capacity, TEMPERATURE_MEASUREMENT_POCKETS
-    )
-       
+    @partial_heat_capacity = @total_heat_capacity * TEMPERATURE_MEASUREMENT_POCKETS   
+  end
+  
+  def remaining_capacity_for_heating
+    #@partial_heat_capacity
   end
     
   private
