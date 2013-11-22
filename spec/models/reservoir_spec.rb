@@ -22,5 +22,13 @@ describe "Reservoir" do
   it "has at least one temperature sensor" do
     reservoir.temperature_sensors.first.should_not be_nil
   end
+  
+  specify ": The temperature sensor reading is reasonable" do
+    reservoir.temperature_sensors.first.temperature.should be_within(45).of 50
+  end
+  
+  specify ": Each temperature pocket has sensor" do
+    reservoir.temperature_sensors.count.should eq Reservoir::TEMPERATURE_MEASUREMENT_POCKETS.size
+  end
 
 end
