@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "Reservoir" do
   
-  reservoir = Reservoir.new
-
+  let(:reservoir) { FactoryGirl.create(:reservoir) }
+  
   it "has reasonable value for volume" do
     reservoir.volume.should be > 10
     reservoir.volume.should be < 20000
@@ -19,8 +19,8 @@ describe "Reservoir" do
     sum.should be_within(0.0001).of reservoir.total_heat_capacity
   end
 
-  xit "can read temperature sensors" do
-    temperatures = reservoir.temperature_sensors
+  it "has at least one temperature sensor" do
+    reservoir.temperature_sensors.first.should_not be_nil
   end
 
 end
