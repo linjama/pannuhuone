@@ -18,17 +18,17 @@ describe "Reservoir" do
     sum = reservoir.partial_heat_capacity.reduce(:+)
     sum.should be_within(0.0001).of reservoir.total_heat_capacity
   end
-
-  it "has at least one temperature sensor" do
-    reservoir.temperature_sensors.first.should_not be_nil
-  end
-  
-  specify ": The temperature sensor reading is reasonable" do
-    reservoir.temperature_sensors.first.temperature.should be_within(45).of 50
-  end
   
   specify ": Each temperature pocket has sensor" do
     reservoir.temperature_sensors.count.should eq Reservoir::TEMPERATURE_MEASUREMENT_POCKETS.size
+    reservoir.read_temperatures.size.should eq Reservoir::TEMPERATURE_MEASUREMENT_POCKETS.size
+  end
+  
+  specify ": The temperature sensor readings are reasonable" do
+    temperatures = reservoir.read_temperatures
+    temperatures.each do |t|
+      t.should be_within(45).of 55
+    end
   end
 
 end

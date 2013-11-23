@@ -2,6 +2,18 @@ require 'spec_helper'
 require 'vector_math_helper'
 
 
+describe "sum vector and scalar" do
+  let(:scalar) { 2.0 }
+  let(:vector) { Vector[1.0, 2.0, 3.0] }
+  
+  it "adds the scalar to all elements of the vector" do
+    add_scalar_to_vector(vector, scalar).should eq Vector[3.0, 4.0, 5.0]
+  end
+  
+end
+
+
+
 describe "vector multiply" do
 
   let(:scalar1) { 2.0 }
@@ -46,23 +58,15 @@ describe "vector multiply" do
     end
   end
   
-  context "when input is not numeric" do
-    xit "shows error message containing 'must be numeric'" do
+  context "when input is nil of false" do
+    it "shows error message containing 'nil'" do
       
-      expect { vector_multiply(vector1, 'a') }.to(
-        raise_error(/must be numeric/)
+      expect { vector_multiply(vector1, nil) }.to(
+        raise_error(/nil/)
       )
       
-      expect { vector_multiply(vector1, '7.3') }.not_to(
-        raise_error(/must be numeric/)
-      )
-      
-      expect { vector_multiply(vector1, 'wibble') }.to(
-        raise_error(/must be numeric/)
-      )
-      
-      expect { vector_multiply(vector1, [1.0, 2.0, 'wibble']) }.to(
-        raise_error(/must be numeric/)
+      expect { vector_multiply(vector1, false) }.to(
+        raise_error(/nil/)
       )
       
     end

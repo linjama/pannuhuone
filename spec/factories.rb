@@ -4,9 +4,11 @@ FactoryGirl.define do
     volume 2500
     mass 350
     after(:create) do |reservoir|
-      reservoir.temperature_sensors << FactoryGirl.build(
-        :temperature_sensor, reservoir: reservoir
-      )
+      1.upto(5) do |i|
+        reservoir.temperature_sensors << FactoryGirl.build(
+          :temperature_sensor, reservoir: reservoir, temperature: 60-2*i
+        )
+      end
     end
   end
   
