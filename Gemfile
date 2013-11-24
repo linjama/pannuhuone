@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 group :doc do
