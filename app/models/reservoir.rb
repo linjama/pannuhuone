@@ -1,3 +1,5 @@
+#coding: utf-8
+
 require 'vector_math_helper'
 
 class Reservoir < ActiveRecord::Base
@@ -9,6 +11,7 @@ class Reservoir < ActiveRecord::Base
   METAL_HEAT_CAPACITY = 0.45/3600.0   # [kWh/kg/Celcius]
   TEMPERATURE_OF_INLET_WATER = 6
   TEMPERATURE_OF_HEATING_RETURN = 28  # Not planned to be measured
+  MINIMUM_TEMPERATURE_FOR_HOT_WATER = 46
   TEMPERATURE_MEASUREMENT_POCKETS = Vector[20, 20, 20, 20, 20]/100 
   
   def total_heat_capacity
@@ -20,7 +23,20 @@ class Reservoir < ActiveRecord::Base
   end
   
   def remaining_capacity_for_heating
-    vector_multiply(self.partial_heat_capacity, self.read_temperatures-TEMPERATURE_OF_HEATING_RETURN)
+    temperature_differences = add_scalar_to_vector(
+      self.read_temperatures, -TEMPERATURE_OF_HEATING_RETURN
+    )
+      
+    vector_multiply(self.partial_heat_capacity, temperature_differences).reduce(:+)
+  end
+  
+  def remaining_capacity_for_hot_water
+    temperature_differences = add_scalar_to_vector(
+      self.read_temperatures, -MINIMUM_TEMPERATURE_FOR_HOT_WATER
+    )
+    
+    temperature_differences.each { |dt| dt = 0 if dt < 0 }
+    vector_multiply(self.partial_heat_capacity, temperature_differences).reduce(:+)
   end
   
   def read_temperatures
