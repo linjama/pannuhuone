@@ -1,10 +1,19 @@
 require 'spec_helper'
 
 describe "Main Page" do
-  describe "GET /main_pages" do
-    it "Should have content 'Temperatures'" do
-      visit '/main_pages/home'
+  before(:each) { visit 'main_page/index' }
+  let(:reservoir) { FactoryGirl.create(:reservoir) }
+ 
+  describe "GET /main_page/index" do
+    it "have content 'Temperatures'" do
       expect(page).to have_content('Temperatures')
     end
+    
+    it "displays all temperature values" do
+      reservoir.read_temperatures.each do |t|
+        expect(page).to have_content(t.to_s)
+      end
+    end
+    
   end
 end
