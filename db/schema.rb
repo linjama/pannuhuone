@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119173127) do
+ActiveRecord::Schema.define(version: 20131127113412) do
 
   create_table "reservoirs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "volume",     default: 0
     t.integer  "mass",       default: 0
+    t.string   "name"
   end
 
   create_table "temperature_sensors", force: true do |t|

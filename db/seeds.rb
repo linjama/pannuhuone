@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Reservoir.destroy_all
-reservoir = Reservoir.create!(volume: 2500, mass: 350)
+reservoir = Reservoir.create!(volume: 2500, mass: 350, name: "main_reservoir")
 
 
 TemperatureSensor.destroy_all
