@@ -25,5 +25,14 @@ describe "Main Page" do
       expect(page).to have_content kWh_display(remaining_hot_water)
     end
     
+    it "have content 'Heating'" do
+      expect(page).to have_content('Heating')
+    end
+    
+    it "displays remaining heating capacity" do
+      remaining_heating = reservoir.remaining_capacity_for_heating
+      expect(page).to have_content kWh_display(remaining_heating)
+    end
+    
   end
 end

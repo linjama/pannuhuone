@@ -7,10 +7,16 @@
   <% end %>
 </div>
 
-<div class="kWh_display">
+<div class="hot_water_bar">
   Hot water [kWh]
-  <div class="kWh_display_upper_part">
-    <%= %>
+  <div class="hot_water_bar_upper_part">
+    <%= kWh_display(@reservoir.remaining_capacity_for_hot_water) %>
   </div>
 </div>
 
+<div class="heating_bar">
+  Heating [kWh]
+  <div class="heating_bar_upper_part">
+    <%= kWh_display(@reservoir.remaining_capacity_for_heating) %>
+  </div>
+</div>
