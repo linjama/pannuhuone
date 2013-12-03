@@ -1,22 +1,24 @@
-<div class="temperatures_display_bar">
-  Temperatures
+<section class="temperatures_display">
+  <header>Temperatures</header> 
   <% @temperatures.each do |t| %>
-    <div class="temperature_display">
+    <p class="temperature_display">
       <%= t %>
-    </div>
+    </p>
   <% end %>
-</div>
+</section>
 
-<div class="hot_water_bar">
-  Hot water [kWh]
-  <div class="hot_water_bar_upper_part">
+<section class="hot_water_display">
+  <header>Hot water [kWh]</header>
+  <div id="hot_water_display_background">
     <%= kWh_display(@reservoir.remaining_capacity_for_hot_water) %>
+    <div id="hot_water_display_bar"></div>
   </div>
-</div>
+</section>
 
-<div class="heating_bar">
-  Heating [kWh]
-  <div class="heating_bar_upper_part">
+<section class="heating_display">
+  <header>Heating [kWh]</header>
+  <div id="heating_display_background">
     <%= kWh_display(@reservoir.remaining_capacity_for_heating) %>
+    <div id="heating_display_bar"></div>
   </div>
-</div>
+</section>
