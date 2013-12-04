@@ -2,5 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Dimensions of maing elements
-@import 'dimensions'
+// Dimensions of main elements
+@import 'dimensions';
+
+// General
+$font-stack: Arial, sans-serif;
+$primary-color: #C8C8C8;
+
+// Sections
+section {
+  height: $content-heigth;
+}

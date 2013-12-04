@@ -26,12 +26,13 @@ describe "Main Page" do
     end
     
     it "displays remaining hot water as a bar" do
-     page.should have_selector 'div#hot_water_display_bar'
-     bar = page.find('div#hot_water_display_bar')
+     page.should have_selector 'img#hot_water_display_bar'
+     bar = page.find('img#hot_water_display_bar')
      remaining_hot_water = reservoir.remaining_capacity_for_hot_water
      max_hot_water = reservoir.maximum_capacity_for_hot_water
      full_heigth = dimensions_reader("content-heigth").strip[0..-3].to_f
-     bar[:height].should eq((full_heigth*remaining_hot_water/max_hot_water).floor)
+     bar_heigth = (full_heigth*remaining_hot_water/max_hot_water).ceil.to_s+"px"
+     bar[:height].should eq bar_heigth
     end
     
     it "have content 'Heating'" do
