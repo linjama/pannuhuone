@@ -11,5 +11,31 @@ $primary-color: #C8C8C8;
 
 // Sections
 section {
+  font-family: $font-stack;
+  background-color: $primary-color;
   height: $content-heigth;
+  width: $section-width;
+  padding-left: $section-padding;
+  padding-right: $section-padding;
+  display: inline-box;
+  float: left;
+  border: 1px solid black;
+  
+  header {
+    font-size: 24px;
+    text-align: center;
+  }
 }
+
+#temperature_display {
+  font-size: 20px;
+  text-align: center;
+}
+
+#hot_water_display {
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+}
+

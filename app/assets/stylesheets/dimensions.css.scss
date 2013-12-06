@@ -1,7 +1,8 @@
 // screen dimensions
 // The application is designed for my Lumia-800 phone
 //
-// NOTE! All dimensions must be given in px. No calculations are allowed.
+// NOTE! All dimensions must be given in px. 
+// No calculations are allowed for parameters to be extracted by dimensions_reader
 
 $lumia800-screen-width: 480px;
 $lumia800-screen-heigth: 800px; 
@@ -11,6 +12,11 @@ $page-header-heigth: 120px;
 
 //Content
 $content-heigth: 680px;
+
+//Sections
+$section-margin: 0px;
+$section-padding: 10px;
+$section-width: 160px;
 
 // Temperature Display
 $temperature-display-width: 160px;
