@@ -1,32 +1,33 @@
 <section id="temperatures_display_section">
-  <header>Temperatures</header> 
+  <header>Temp.</header>
+  
+  <div id="temperature_values"> 
   <% @temperatures.each do |t| %>
-    <p id="temperature_display">
-      <%= t %> &degC
-    </p>
+    <p><%= t %> &degC</p>
   <% end %>
+  </div>
 </section>
 
 <section id="hot_water_display_section">
-  <header>
-    Hot Water<br>
-    <%= kWh_display(@reservoir.remaining_capacity_for_hot_water) %> kWh
-  </header> 
   
-  <%= content_tag("svg",  
-    tag("rect", options_for_bar_displays[:hot_water]), 
-    svg_tag_options) %>
-    
+  <header>Hot Water</header> 
+  
+  <%= tag("svg", svg_tag_options, true) %>
+    <% kWh_value = kWh_display(@reservoir.remaining_capacity_for_hot_water).to_s+" kWh" %>
+    <%= content_tag("text", kWh_value, options_for_bar_displays[:hot_water_text])  %>
+    <%= tag("rect", options_for_bar_displays[:hot_water]) %>
+  </svg>
+   
 </section>
 
 <section id="heating_display_section">
-  <header>
-    Heating<br>
-    <%= kWh_display(@reservoir.remaining_capacity_for_heating) %> kWh
-  </header>
+  
+  <header>Heating</header>
     
-  <%= content_tag("svg",  
-    tag("rect", options_for_bar_displays[:heating]), 
-    svg_tag_options) %>  
+  <%= tag("svg", svg_tag_options, true) %>
+    <% kWh_value = kWh_display(@reservoir.remaining_capacity_for_heating).to_s+" kWh" %>
+    <%= content_tag("text", kWh_value, options_for_bar_displays[:heating_text]) %>
+    <%= tag("rect", options_for_bar_displays[:heating]) %>
+  </svg>
     
 </section>

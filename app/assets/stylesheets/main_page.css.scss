@@ -19,22 +19,24 @@ section {
   padding-right: $section-padding;
   display: inline-box;
   float: left;
-  border: 1px solid black;
   
   header {
     height: $page-header-height;
-    font-size: 24px;
+    font-size: 36px;
     text-align: center;
+  }
+  
+  svg {
+    font-size: 30px;
   }
 }
 
-#temperature_display {
-  font-size: 20px;
+#temperature_values {
+  font-size: 30px;
   text-align: center;
+  position: static;
+  bottom: 5px;
 }
 
-#hot_water_display {
-  font-size: 20px;
-  text-align: center;
-}
+
 

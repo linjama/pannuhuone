@@ -11,7 +11,7 @@ reservoir = Reservoir.create!(volume: 2500, mass: 350, name: "main_reservoir")
 
 
 TemperatureSensor.destroy_all
-temp_values = [67, 65, 53, 39, 35]
+temp_values = [81, 80, 80, 76, 68]
 
 reservoir.temperature_sensors.create!(temperature: temp_values[0])
 reservoir.temperature_sensors.create!(temperature: temp_values[1])

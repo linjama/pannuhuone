@@ -11,6 +11,7 @@ module MainPageHelper
   end
   
   def options_for_bar_displays
+    text_offset = 10
     section_height = svg_tag_options[:height].to_i
     section_width = svg_tag_options[:width].to_i 
     section_padding = dimensions_reader("section-padding").to_i
@@ -24,7 +25,6 @@ module MainPageHelper
     max_heating = @reservoir.maximum_capacity_for_heating
     heating_bar_height = (section_height * remaining_heating / max_heating).ceil
     
-            
     opts =  {
       hot_water: {
         x: section_padding.to_s.html_safe ,
@@ -32,14 +32,25 @@ module MainPageHelper
         width: bar_width.to_s.html_safe ,
         height: hot_water_bar_height.to_s.html_safe ,
         fill: "green".html_safe
-      } ,
+      },
+      
+      hot_water_text: {
+        x: (section_padding + text_offset).to_s.html_safe ,
+        y: (section_height - hot_water_bar_height - text_offset).to_s.html_safe
+      },
+      
       heating: {
         x: section_padding.to_s.html_safe ,
         y: (section_height - heating_bar_height).to_s.html_safe ,
         width: bar_width.to_s.html_safe ,
         height: heating_bar_height.to_s.html_safe ,
         fill: "green".html_safe
-      }
+      },
+      
+      heating_text: {
+        x: (section_padding + text_offset).to_s.html_safe ,
+        y: (section_height - heating_bar_height - text_offset).to_s.html_safe
+      },
     }
   end
   
