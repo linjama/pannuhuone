@@ -13,9 +13,8 @@ module ApplicationHelper
           var, foo, val = line.partition(':')
           var = var.strip[1..-1]  # remove $ at the beginning
           val = val.strip[0..-2]  # Remove ; at the end
-          if var == str
-            return val
-          end
+          
+          return val if var == str
         end
       end
     end

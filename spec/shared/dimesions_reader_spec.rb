@@ -19,4 +19,10 @@ describe "Dimension Reader" do
     end
   end
   
+  describe " when its 'to_i' method is called with valid argument" do
+    it "returns integer value" do
+      dimensions_reader('lumia800-screen-width').to_i.should eq 480
+    end
+  end
+  
 end
