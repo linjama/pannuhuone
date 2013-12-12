@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127113412) do
+ActiveRecord::Schema.define(version: 20131212170115) do
 
   create_table "reservoirs", force: true do |t|
     t.datetime "created_at"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20131127113412) do
   create_table "temperature_sensors", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "temperature",  precision: 4, scale: 1
+    t.decimal  "temperature",      precision: 4, scale: 1
     t.integer  "reservoir_id"
+    t.text     "calibration_data"
   end
 
 end

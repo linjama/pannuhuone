@@ -1,3 +1,5 @@
+require 'matrix'
+
 FactoryGirl.define do
 
   factory :reservoir do
@@ -15,8 +17,8 @@ FactoryGirl.define do
   
   factory :temperature_sensor do
     temperature 57
-    reservoir :reservoir
+    reservoir Reservoir.find_by_name('main_reservoir')
+    calibration_data({ voltages: Vector[1.2, 1.7, 2.0], temperatures: Vector[100, 60, 42] })
   end
-  
   
 end
