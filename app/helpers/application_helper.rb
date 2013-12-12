@@ -2,7 +2,11 @@ module ApplicationHelper
   
   # Displays kWh value in specific format
   def kWh_display(kWh_value)
-    number_with_precision(kWh_value, precision: 1)
+    if kWh_value < 100
+      number_with_precision(kWh_value, precision: 1)
+    else
+      number_with_precision(kWh_value, precision: 0)
+    end
   end
   
   # Evaluates the value of constant from dimensions.css.scss

@@ -13,6 +13,8 @@ $primary-color: #C8C8C8;
 section {
   font-family: $font-stack;
   background-color: $primary-color;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   height: $content-height + $page-header-height;
   width: $section-width;
   padding-left: $section-padding;
@@ -34,8 +36,6 @@ section {
 #temperature_values {
   font-size: 30px;
   text-align: center;
-  position: static;
-  bottom: 5px;
 }
 
 

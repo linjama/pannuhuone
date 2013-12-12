@@ -27,12 +27,18 @@ class Reservoir < ActiveRecord::Base
     self.total_heat_capacity*(MAXIMUM_TEMPERATURE-TEMPERATURE_OF_HEATING_RETURN)
   end
   
-  def remaining_capacity_for_heating
+  def remaining_capacity_for_heating(relative = nil)
     temperature_differences = add_scalar_to_vector(
       self.read_temperatures, -TEMPERATURE_OF_HEATING_RETURN)
       
-    vector_multiply(
+    remaining_kWh = vector_multiply(
       self.partial_heat_capacity, temperature_differences).reduce(:+)
+    
+    if relative
+      remaining_kWh / self.maximum_capacity_for_heating
+    else
+      remaining_kWh
+    end
   end
   
   def maximum_capacity_for_hot_water
@@ -40,14 +46,21 @@ class Reservoir < ActiveRecord::Base
       MAXIMUM_TEMPERATURE - MINIMUM_TEMPERATURE_FOR_HOT_WATER)
   end
   
-  def remaining_capacity_for_hot_water
+  def remaining_capacity_for_hot_water(relative = nil)
     temperature_differences = add_scalar_to_vector(
       self.read_temperatures, -MINIMUM_TEMPERATURE_FOR_HOT_WATER)
     
     temperature_differences.each { |dt| dt = 0 if dt < 0 }
     
-    vector_multiply(
+    remaining_kWh = vector_multiply(
       self.partial_heat_capacity, temperature_differences).reduce(:+)
+      
+    if relative
+      remaining_kWh / self.maximum_capacity_for_hot_water
+    else
+      remaining_kWh
+    end
+    
   end
   
   def read_temperatures
