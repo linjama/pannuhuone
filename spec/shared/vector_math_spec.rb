@@ -12,7 +12,13 @@ describe "sum vector and scalar" do
   
 end
 
-
+describe "vector diff" do
+  let(:vector) { Vector[1, 2, 4] }  
+  it "returns difference of elements" do
+    diff(vector).should eq(Vector[1, 2])
+  end 
+  
+end
 
 describe "vector multiply" do
 

@@ -17,16 +17,16 @@ describe TemperatureSensor do
   end
   
   specify "voltage values are monotonically increasing" do
-    u = sensor1[:calibration_data][:voltages]
-    (1..u.size-2).each do |i|
-      (u[i]-u[i-1]).should > 0
+    u = Vector.elements(sensor1[:calibration_data][:voltages])
+    diff(u).each do |delta_u|
+      delta_u.should > 0
     end
   end
   
   specify "temperature values are monotonically decreasing" do
-    t = sensor1[:calibration_data][:temperatures]
-    (1..t.size-2).each do |i|
-      (t[i]-t[i-1]).should < 0
+    t = Vector.elements(sensor1[:calibration_data][:temperatures])
+    diff(t).each do |delta_t|
+      delta_t.should < 0
     end
   end 
   

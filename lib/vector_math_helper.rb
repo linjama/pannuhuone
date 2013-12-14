@@ -17,6 +17,9 @@ def add_scalar_to_vector(vec, scalar)
   vec+scalar_expanded_to_column_matrix.column(0)
 end
 
+def diff(vec)
+  Vector.elements(vec[1..-1])-Vector.elements(vec[0..-2])
+end
 
 def vector_to_diagonal_matrix(vec)
   Matrix.build(vec.count) do |row, col|
