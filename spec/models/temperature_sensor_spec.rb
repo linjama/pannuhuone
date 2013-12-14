@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'interpolation_helper'
 
 describe TemperatureSensor do
   let!(:sensor1) { FactoryGirl.build(:temperature_sensor) }
@@ -30,20 +29,4 @@ describe TemperatureSensor do
       delta_t.should < 0
     end
   end 
-  
-  describe "Linear interpolation" do
-    it "returns the corresponding temperature value at data point" do
-      interpolate(u_data,t_data,u_data[0]).should eq t_data[0]
-      interpolate(u_data,t_data,u_data[1]).should eq t_data[1]
-    end
-    
-    it "interpolates betweeen data points" do
-      delta_u = diff(u_data)
-      delta_t = diff(t_data)
-      u_test = u_data[0]+delta_u[0]/2
-      t_expected = t_data[0]+delta_t[0]/2
-      interpolate(u_data,t_data,u_test).should be_within(1e-9).of(t_expected)
-    end
-  end
-  
 end
