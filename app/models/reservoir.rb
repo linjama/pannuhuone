@@ -12,8 +12,8 @@ class Reservoir < ActiveRecord::Base
   TEMPERATURE_OF_INLET_WATER = 6
   TEMPERATURE_OF_HEATING_RETURN = 28  # Not planned to be measured
   MINIMUM_TEMPERATURE_FOR_HOT_WATER = 46
-  MAXIMUM_TEMPERATURE =85
-  TEMPERATURE_MEASUREMENT_POCKETS = Vector[20, 20, 20, 20, 20]/100 
+  MAXIMUM_TEMPERATURE = 85
+  TEMPERATURE_MEASUREMENT_POCKETS = Vector[30, 33, 22, 22, 27]/134
   
   def total_heat_capacity
     WATER_HEAT_CAPACITY*self.volume + METAL_HEAT_CAPACITY*self.mass
@@ -29,10 +29,12 @@ class Reservoir < ActiveRecord::Base
   
   def remaining_capacity_for_heating(relative = nil)
     temperature_differences = add_scalar_to_vector(
-      self.read_temperatures, -TEMPERATURE_OF_HEATING_RETURN)
+      self.read_temperatures, -TEMPERATURE_OF_HEATING_RETURN
+      )
       
     remaining_kWh = vector_multiply(
-      self.partial_heat_capacity, temperature_differences).reduce(:+)
+      self.partial_heat_capacity, temperature_differences
+      ).reduce(:+)
     
     if relative
       remaining_kWh / self.maximum_capacity_for_heating
@@ -48,12 +50,14 @@ class Reservoir < ActiveRecord::Base
   
   def remaining_capacity_for_hot_water(relative = nil)
     temperature_differences = add_scalar_to_vector(
-      self.read_temperatures, -MINIMUM_TEMPERATURE_FOR_HOT_WATER)
+      self.read_temperatures, -MINIMUM_TEMPERATURE_FOR_HOT_WATER
+      )
     
     temperature_differences.each { |dt| dt = 0 if dt < 0 }
     
     remaining_kWh = vector_multiply(
-      self.partial_heat_capacity, temperature_differences).reduce(:+)
+      self.partial_heat_capacity, temperature_differences
+      ).reduce(:+)
       
     if relative
       remaining_kWh / self.maximum_capacity_for_hot_water

@@ -13,8 +13,8 @@ reservoir = Reservoir.create!(volume: 2500, mass: 350, name: "main_reservoir")
 TemperatureSensor.destroy_all
 temp_values = [81, 80, 80, 76, 68]
 
-reservoir.temperature_sensors.create!(temperature: temp_values[0])
-reservoir.temperature_sensors.create!(temperature: temp_values[1])
-reservoir.temperature_sensors.create!(temperature: temp_values[2])
-reservoir.temperature_sensors.create!(temperature: temp_values[3])
-reservoir.temperature_sensors.create!(temperature: temp_values[4])
+reservoir.temperature_sensors.create!(temperature: temp_values[0], name: "top-0")
+reservoir.temperature_sensors.create!(temperature: temp_values[1], name: "top-1")
+reservoir.temperature_sensors.create!(temperature: temp_values[2], name: "top-2")
+reservoir.temperature_sensors.create!(temperature: temp_values[3], name: "top-3")
+reservoir.temperature_sensors.create!(temperature: temp_values[4], name: "top-4")
