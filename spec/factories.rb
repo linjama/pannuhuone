@@ -12,7 +12,7 @@ FactoryGirl.define do
           :temperature_sensor, 
           reservoir: reservoir, 
           temperature: 60-2*i,
-          name: "top-#{i}" 
+          name: "top-#{i-1}" 
         )
       end
     end

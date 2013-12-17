@@ -12,9 +12,34 @@ reservoir = Reservoir.create!(volume: 2500, mass: 350, name: "main_reservoir")
 
 TemperatureSensor.destroy_all
 temp_values = [81, 80, 80, 76, 68]
+calibration_data = { voltages: Vector[1.2, 1.7, 2.0], temperatures: Vector[100, 60, 42] }
 
-reservoir.temperature_sensors.create!(temperature: temp_values[0], name: "top-0")
-reservoir.temperature_sensors.create!(temperature: temp_values[1], name: "top-1")
-reservoir.temperature_sensors.create!(temperature: temp_values[2], name: "top-2")
-reservoir.temperature_sensors.create!(temperature: temp_values[3], name: "top-3")
-reservoir.temperature_sensors.create!(temperature: temp_values[4], name: "top-4")
+reservoir.temperature_sensors.create!(
+  name: "top-0",
+  temperature: temp_values[0], 
+  calibration_data: calibration_data
+  )
+  
+reservoir.temperature_sensors.create!(
+  name: "top-1",
+  temperature: temp_values[1],
+  calibration_data: calibration_data
+  )
+  
+reservoir.temperature_sensors.create!(
+  name: "top-2",
+  temperature: temp_values[2],
+  calibration_data: calibration_data
+  )
+  
+reservoir.temperature_sensors.create!(
+  name: "top-3",
+  temperature: temp_values[3],
+  calibration_data: calibration_data
+  )
+  
+reservoir.temperature_sensors.create!(
+  name: "top-4",
+  temperature: temp_values[4], 
+  calibration_data: calibration_data
+  )

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe TemperatureSensor do
-  let!(:sensor1) { FactoryGirl.build(:temperature_sensor) }
+  let!(:reservoir) { FactoryGirl.create(:reservoir) }
+  let!(:sensor1) { reservoir.temperature_sensors.first }
   let!(:u_data) { sensor1[:calibration_data][:voltages] }
   let!(:t_data) { sensor1[:calibration_data][:temperatures] }
   
@@ -28,5 +29,9 @@ describe TemperatureSensor do
     diff(t_data).each do |delta_t|
       delta_t.should < 0
     end
+  end
+  
+  it "can write new values to database" do
+    sensor1.write_temperature_to_db
   end 
 end

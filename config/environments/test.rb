@@ -33,4 +33,7 @@ Pannuhuone::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  
+  # Added to avoid annoying warning
+  I18n.enforce_available_locales = false
 end
