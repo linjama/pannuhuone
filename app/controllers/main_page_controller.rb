@@ -1,5 +1,5 @@
 class MainPageController < ApplicationController
-  def index
+  def overview
     @reservoir = Reservoir.find_by_name('main_reservoir')
     @temperatures = @reservoir.read_temperatures
   end
